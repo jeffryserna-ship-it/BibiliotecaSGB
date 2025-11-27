@@ -3,7 +3,7 @@ node_modules
 
 # Builds / bundling
 build
-dist
+
 .vite
 .cache
 *.tsbuildinfo
