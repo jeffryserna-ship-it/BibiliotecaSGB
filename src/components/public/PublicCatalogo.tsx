@@ -4,7 +4,7 @@
  * ============================================================================
  * Vista pública principal del Sistema de Gestión de Biblioteca (SGB)
  * Permite explorar el catálogo de libros sin necesidad de iniciar sesión
- * Incluye restricciones para solicitar préstamos (requiere autenticación)
+ * Incluye restricciones para solicitarpréstamos (requiere autenticación)
  * ============================================================================
  */
 
