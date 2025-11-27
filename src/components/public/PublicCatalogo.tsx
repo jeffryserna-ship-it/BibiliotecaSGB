@@ -49,6 +49,8 @@ interface PublicCatalogoProps {
   onLoginClick: () => void;
 }
 
+const heroBackground = 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1400&q=80';
+
 export function PublicCatalogo({ onRegistroClick, onLoginClick }: PublicCatalogoProps) {
   const [libros, setLibros] = useState<Libro[]>([]);
   const [categorias, setCategorias] = useState<Categoria[]>([]);
@@ -83,7 +85,7 @@ export function PublicCatalogo({ onRegistroClick, onLoginClick }: PublicCatalogo
       console.log('📁 [PublicCatalogo] Respuesta categorías:', categoriasRes);
 
       if (librosRes.success && librosRes.data) {
-        console.log(`✅ [PublicCatalogo] ${librosRes.data.length} libros cargados correctamente`);
+        console.log(✅ [PublicCatalogo] ${librosRes.data.length} libros cargados correctamente);
         setLibros(librosRes.data || []);
       } else {
         console.error('❌ [PublicCatalogo] Error al cargar libros:', librosRes.error || 'Respuesta inválida');
@@ -93,7 +95,7 @@ export function PublicCatalogo({ onRegistroClick, onLoginClick }: PublicCatalogo
       }
 
       if (categoriasRes.success && categoriasRes.data) {
-        console.log(`✅ [PublicCatalogo] ${categoriasRes.data.length} categorías cargadas correctamente`);
+        console.log(✅ [PublicCatalogo] ${categoriasRes.data.length} categorías cargadas correctamente);
         setCategorias(categoriasRes.data || []);
       } else {
         console.error('❌ [PublicCatalogo] Error al cargar categorías:', categoriasRes.error || 'Respuesta inválida');
@@ -179,256 +181,42 @@ export function PublicCatalogo({ onRegistroClick, onLoginClick }: PublicCatalogo
       </nav>
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center mb-8">
-            <h2 className="text-4xl mb-4">Bienvenido a nuestra Biblioteca</h2>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Explora nuestro extenso catálogo de libros y descubre tu próxima gran lectura. 
-              Regístrate gratis para acceder a préstamos y gestionar tus libros de forma digital.
-            </p>
-          </div>
-
-          {/* Estadísticas */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center">
-              <BookOpen className="w-10 h-10 mx-auto mb-3 text-blue-200" />
-              <div className="text-3xl mb-1">{totalLibros}</div>
-              <div className="text-blue-100">Libros en catálogo</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center">
-              <BookMarked className="w-10 h-10 mx-auto mb-3 text-green-200" />
-              <div className="text-3xl mb-1">{librosDisponibles}</div>
-              <div className="text-blue-100">Disponibles ahora</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center">
-              <Filter className="w-10 h-10 mx-auto mb-3 text-purple-200" />
-              <div className="text-3xl mb-1">{totalCategorias}</div>
-              <div className="text-blue-100">Categorías</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Banner informativo */}
-      <div className="bg-amber-50 border-y border-amber-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
-            <div className="flex-1">
-              <p className="text-sm text-amber-900">
-                <strong>Vista de exploración:</strong> Puedes navegar libremente por el catálogo, pero para solicitar préstamos, 
-                renovar libros o gestionar multas necesitas{' '}
-                <button 
-                  onClick={onRegistroClick}
-                  className="underline hover:text-amber-700"
-                >
-                  crear una cuenta gratuita
-                </button>
-                {' '}o{' '}
-                <button 
-                  onClick={onLoginClick}
-                  className="underline hover:text-amber-700"
-                >
-                  iniciar sesión
-                </button>.
+      <div
+        className="relative overflow-hidden text-slate-900"
+        style={{
+          backgroundImage: linear-gradient(90deg, rgba(0,126,255,0.85), rgba(0,183,255,0.7)), url(${heroBackground}),
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-sky-500/70 via-sky-400/50 to-blue-500/40"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] items-center">
+            <div className="text-white drop-shadow-sm">
+              <h2 className="text-5xl md:text-6xl font-bold leading-tight">
+                Digital<br />Library
+              </h2>
+              <p className="mt-4 text-lg text-blue-50 max-w-2xl">
+                Descubre, reserva y gestiona tus libros favoritos en línea. Inicia sesión o crea tu cuenta gratuita para explorar el catálogo completo y comenzar a leer.
               </p>
+              <div className="mt-8" />
+            </div>
+
+            <div className="hidden md:block">
+              <div className="rounded-2xl bg-white/60 p-6 shadow-2xl backdrop-blur">
+                <img
+                  src={heroBackground}
+                  alt="Lectura digital"
+                  className="w-full h-full object-cover rounded-xl"
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Contenido principal */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h3 className="text-3xl text-gray-900 mb-2">Explora Nuestro Catálogo</h3>
-          <p className="text-gray-600">
-            Busca entre {librosFiltrados.length} {librosFiltrados.length === 1 ? 'libro' : 'libros'}
-          </p>
-        </div>
-
-        {/* Barra de búsqueda y filtros */}
-        <Card className="mb-8 shadow-md">
-          <CardContent className="pt-6">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-              {/* Búsqueda */}
-              <div className="md:col-span-6">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                  <Input
-                    placeholder="Buscar por título, autor o ISBN..."
-                    value={busqueda}
-                    onChange={(e) => setBusqueda(e.target.value)}
-                    className="pl-11 h-11"
-                  />
-                </div>
-              </div>
-
-              {/* Filtro de categoría */}
-              <div className="md:col-span-3">
-                <Select value={categoriaFiltro} onValueChange={setCategoriaFiltro}>
-                  <SelectTrigger className="h-11">
-                    <SelectValue placeholder="Categoría" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="todas">Todas las categorías</SelectItem>
-                    {categorias.map(cat => (
-                      <SelectItem key={cat.id} value={cat.id}>
-                        {cat.nombre}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Filtro de disponibilidad */}
-              <div className="md:col-span-3">
-                <Select value={disponibilidadFiltro} onValueChange={setDisponibilidadFiltro}>
-                  <SelectTrigger className="h-11">
-                    <SelectValue placeholder="Disponibilidad" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="todas">Todas</SelectItem>
-                    <SelectItem value="disponible">Disponibles</SelectItem>
-                    <SelectItem value="no-disponible">No disponibles</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Grid de libros */}
-        {loading ? (
-          <div className="text-center py-16">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-blue-600"></div>
-            <p className="mt-4 text-gray-600">Cargando catálogo...</p>
-          </div>
-        ) : librosFiltrados.length === 0 ? (
-          <div className="text-center py-16">
-            <BookOpen className="w-20 h-20 mx-auto text-gray-300 mb-4" />
-            <h4 className="text-xl text-gray-900 mb-2">No se encontraron libros</h4>
-            <p className="text-gray-600">Intenta ajustar los filtros de búsqueda</p>
-          </div>
-        ) : (
-          <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
-              {librosFiltrados.map((libro) => (
-                <Card key={libro.id} className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
-                  <CardContent className="p-5 flex flex-col flex-1">
-                    {/* Portada del libro */}
-                    <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg mb-4 flex items-center justify-center h-48">
-                      {libro.imagen_portada ? (
-                        <ImageWithFallback 
-                          src={libro.imagen_portada} 
-                          alt={libro.titulo}
-                          className="w-full h-full object-cover rounded-lg"
-                        />
-                      ) : (
-                        <BookOpen className="w-16 h-16 text-gray-400" />
-                      )}
-                    </div>
-
-                    {/* Badge de disponibilidad */}
-                    <div className="flex items-center justify-between mb-3">
-                      <Badge
-                        variant="outline"
-                        className="text-xs"
-                        style={{
-                          backgroundColor: libro.copias_disponibles > 0 ? '#28A745' : '#DC3545',
-                          color: 'white',
-                          borderColor: 'transparent'
-                        }}
-                      >
-                        {libro.copias_disponibles > 0 ? 'Disponible' : 'No disponible'}
-                      </Badge>
-                      {libro.categoria && (
-                        <Badge variant="secondary" className="text-xs">
-                          {libro.categoria.nombre}
-                        </Badge>
-                      )}
-                    </div>
-
-                    {/* Título y autor */}
-                    <h4 className="text-gray-900 mb-2 line-clamp-2 min-h-[3rem] flex-1">
-                      {libro.titulo}
-                    </h4>
-                    
-                    <p className="text-sm text-gray-600 mb-3">
-                      por {libro.autor}
-                    </p>
-
-                    {/* Info de copias */}
-                    <div className="text-xs text-gray-500 mb-4 pb-4 border-b">
-                      {libro.copias_disponibles} de {libro.copias_totales || libro.copias_disponibles} {' '}
-                      {(libro.copias_totales || libro.copias_disponibles) === 1 ? 'copia disponible' : 'copias disponibles'}
-                    </div>
-
-                    {/* Botones de acción */}
-                    <div className="flex gap-2">
-                      <Button
-                        onClick={() => handleVerDetalles(libro)}
-                        variant="outline"
-                        size="sm"
-                        className="flex-1 gap-1"
-                      >
-                        <Eye className="w-4 h-4" />
-                        Ver detalles
-                      </Button>
-                      <Button
-                        onClick={() => handleSolicitarPrestamo(libro)}
-                        size="sm"
-                        className="flex-1 gap-1 text-white"
-                        style={{ backgroundColor: '#007BFF' }}
-                        disabled={libro.copias_disponibles === 0}
-                      >
-                        <Lock className="w-4 h-4" />
-                        Solicitar
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            {/* Call to action final */}
-            <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200 shadow-lg">
-              <CardContent className="p-10 text-center">
-                <div className="max-w-3xl mx-auto">
-                  <Lock className="w-16 h-16 mx-auto mb-4 text-blue-600" />
-                  <h3 className="text-2xl text-gray-900 mb-3">
-                    ¿Listo para comenzar?
-                  </h3>
-                  <p className="text-gray-700 mb-6 text-lg">
-                    Únete a nuestra biblioteca digital y accede a todas las funcionalidades del sistema. 
-                    Solicita préstamos, gestiona tus libros y mantén tu historial de lectura, ¡todo en un solo lugar!
-                  </p>
-                  <div className="flex items-center justify-center gap-4 flex-wrap">
-                    <Button
-                      onClick={onRegistroClick}
-                      className="gap-2 text-white hover:opacity-90"
-                      style={{ backgroundColor: '#28A745' }}
-                      size="lg"
-                    >
-                      <UserPlus className="w-5 h-5" />
-                      Crear cuenta gratis
-                    </Button>
-                    <Button
-                      onClick={onLoginClick}
-                      variant="outline"
-                      size="lg"
-                      className="gap-2 border-2"
-                    >
-                      <LogIn className="w-5 h-5" />
-                      Ya tengo cuenta
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </>
-        )}
-      </div>
+      {/* Contenido principal removido del banner (no se muestra catálogo aquí) */}
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white mt-16">
