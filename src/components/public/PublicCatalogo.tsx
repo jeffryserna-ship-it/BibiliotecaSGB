@@ -95,7 +95,7 @@ export function PublicCatalogo({ onRegistroClick, onLoginClick }: PublicCatalogo
       }
 
       if (categoriasRes.success && categoriasRes.data) {
-        console.log(✅ [PublicCatalogo] ${categoriasRes.data.length} categorías cargadas correctamente);
+        console.log( [PublicCatalogo] ${categoriasRes.data.length} categorías cargadas correctamente);
         setCategorias(categoriasRes.data || []);
       } else {
         console.error('❌ [PublicCatalogo] Error al cargar categorías:', categoriasRes.error || 'Respuesta inválida');
