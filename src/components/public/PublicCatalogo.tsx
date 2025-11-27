@@ -85,7 +85,7 @@ export function PublicCatalogo({ onRegistroClick, onLoginClick }: PublicCatalogo
       console.log('📁 [PublicCatalogo] Respuesta categorías:', categoriasRes);
 
       if (librosRes.success && librosRes.data) {
-        console.log(✅ [PublicCatalogo] ${librosRes.data.length} libros cargados correctamente);
+        console.log( [PublicCatalogo] ${librosRes.data.length} libros cargados correctamente);
         setLibros(librosRes.data || []);
       } else {
         console.error('❌ [PublicCatalogo] Error al cargar libros:', librosRes.error || 'Respuesta inválida');
